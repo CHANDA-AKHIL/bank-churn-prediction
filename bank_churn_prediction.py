@@ -2,7 +2,7 @@
 # Kaggle Playground Series - Season 4, Episode 1
 # Binary Classification - Bank Customer Churn Prediction
 # Logistic Regression with Visualizations
-# Author: [Your Name]
+# Author: [Chanda Akhil]
 # Description: This script predicts bank customer churn using Logistic Regression on Kaggle's synthetic dataset.
 # Includes data preprocessing, model training, ROC-AUC evaluation, and visualizations.
 # Dependencies: pandas, numpy, scikit-learn, matplotlib, seaborn
@@ -30,7 +30,7 @@ except FileNotFoundError as e:
     print(f"Error: {e}. Please download datasets and place in 'data/' folder.")
     exit(1)
 
-print("✅ Data loaded successfully!")
+print(" Data loaded successfully!")
 print("Train shape:", train.shape)
 print("Test shape:", test.shape)
 
@@ -56,7 +56,7 @@ for col in X.columns:
         X[col] = le.transform(X[col].astype(str))
         X_test[col] = le.transform(X_test[col].astype(str))
 
-print("✅ All categorical columns encoded successfully!")
+print(" All categorical columns encoded successfully!")
 
 # ============================================================
 # STEP 4: Scaling
@@ -78,7 +78,7 @@ X_train, X_valid, y_train, y_valid = train_test_split(
 model = LogisticRegression(
     solver='lbfgs', max_iter=1000, random_state=42, n_jobs=-1
 )
-print("🚀 Training Logistic Regression model...")
+print("Training Logistic Regression model...")
 model.fit(X_train, y_train)
 
 # ============================================================
@@ -86,7 +86,7 @@ model.fit(X_train, y_train)
 # ============================================================
 val_pred = model.predict_proba(X_valid)[:, 1]
 val_auc = roc_auc_score(y_valid, val_pred)
-print(f"✅ Validation AUC: {val_auc:.5f}")
+print(f"Validation AUC: {val_auc:.5f}")
 
 # ============================================================
 # STEP 8: Final Predictions & Submission
@@ -98,7 +98,7 @@ submission = pd.DataFrame({
     'Exited': preds
 })
 submission.to_csv('submission.csv', index=False)
-print("🎯 submission.csv generated successfully!")
+print("submission.csv generated successfully!")
 print(submission.head())
 
 # ============================================================
@@ -157,4 +157,5 @@ plt.tight_layout()
 plt.savefig('visualizations/feature_importance_churn.png', dpi=300, bbox_inches='tight')
 plt.show()
 
-print("✅ All visualizations saved!")
+
+print("All visualizations saved!")
